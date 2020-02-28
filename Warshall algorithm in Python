@@ -1,0 +1,47 @@
+from collections import defaultdict
+from numpy import array
+import numpy as np
+    
+vertex=4
+def printSolution(resultant): 
+    print ("Following matrix transitive closure of the given graph ")     
+    for i in range(vertex): 
+       for j in range(vertex): 
+           print ("%7d\t" %(resultant[i][j])) 
+      
+      
+def transitiveClosure(graph): 
+        
+        resultant =[i[:] for i in graph] 
+        
+        for k in range(vertex): 
+               
+            for i in range(vertex): 
+                   
+                for j in range(vertex): 
+                      
+                    resultant[i][j] = resultant[i][j] or (resultant[i][k] and resultant[k][j]) 
+  
+        printSolution(resultant) 
+          
+ 
+  
+ingraph =np.array([[0 for i in range(vertex)]for i in range(vertex)])
+
+for i in range(vertex):
+  ascii=97
+  for j in range(vertex):
+      if i==0 and j>=0:
+        ingraph[i,j]=input("a has a relation with "+chr(ascii)+"? (0 for no /1 for yes)")
+        ascii+=1
+      elif i==1 and j>=0:
+        ingraph[i,j]=input("b has a relation with "+chr(ascii)+"? (0 for no /1 for yes)")
+        ascii+=1
+      elif i==2 and j>=0:
+        ingraph[i,j]=input("c has a relation with "+chr(ascii)+"? (0 for no /1 for yes)")
+        ascii+=1
+      elif i==3 and j>=0:
+        ingraph[i,j]=input("d has a relation with "+chr(ascii)+"? (0 for no /1 for yes)")
+        ascii+=1
+
+transitiveClosure(ingraph)
